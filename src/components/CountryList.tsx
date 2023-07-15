@@ -4,15 +4,19 @@ import { hp, wp } from '../utils/ResponsiveLayout'
 import { countries, countryType } from '../utils/Constant'
 import { FONTS } from '../utils/Fonts'
 import { COLORS } from '../utils/Colors'
+import Animated, {Easing, Layout, SlideInRight} from 'react-native-reanimated'
 
 const CountryList = () => {
 
-    const _renderList = (item: countryType) => {
+    const _renderList = (item: countryType, index: number) => {
         return (
-            <View>
+            <Animated.View
+              layout={Layout.springify()}
+              entering={SlideInRight.delay((index + 1) * 200)} 
+            >
                 <Image source={item.img} style={styles.countryImage} />
                 <Text style={styles.countryName} >{item.name}</Text>
-            </View>
+            </Animated.View>
         )
     }
 
@@ -21,7 +25,7 @@ const CountryList = () => {
       <FlatList 
         data={countries}
         keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => _renderList(item)}
+        renderItem={({item, index}) => _renderList(item, index)}
         horizontal
         bounces={false}
         showsHorizontalScrollIndicator={false}

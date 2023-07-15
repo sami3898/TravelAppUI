@@ -7,6 +7,8 @@ import { FONTS } from "../utils/Fonts";
 import Icon from '@expo/vector-icons/Ionicons'
 import SearchBar from "../components/SearchBar";
 import CountryList from "../components/CountryList";
+import PropertiesList from "../components/PropertiesList";
+import PopularList from "../components/PopularList";
 
 
 const HomeScreen = () => {
@@ -31,6 +33,8 @@ const HomeScreen = () => {
             <Text style={styles.findText}>Find your stay</Text>
             <SearchBar />
             <CountryList />
+            <PropertiesList />
+            <PopularList />
         </SafeAreaView>
     );
 };
