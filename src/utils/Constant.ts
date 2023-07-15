@@ -25,3 +25,37 @@ export const IntroData: introDataType[] = [
         img: require('../../assets/images/intro3.png')
     },
 ]
+
+export type countryType = {
+    id: number,
+    name: string;
+    img: number
+}
+
+export const countries: countryType[] = [
+    {
+        id: 1,
+        name: 'India',
+        img: require('../../assets/images/india.jpg')
+    },
+    {
+        id: 2,
+        name: 'New York',
+        img: require('../../assets/images/newyork.jpg')
+    },
+    {
+        id: 3,
+        name: 'Japan',
+        img: require('../../assets/images/japan.jpg')
+    },
+    {
+        id: 4,
+        name: 'Italy',
+        img: require('../../assets/images/italy.jpg')
+    },
+    {
+        id: 5,
+        name: 'Australia',
+        img: require('../../assets/images/australia.jpg')
+    },
+] 

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, ViewStyle } from 'react-native'
 import React from 'react'
 import Icon from '@expo/vector-icons/MaterialCommunityIcons'
 import { hp, wp } from '../utils/ResponsiveLayout';
@@ -9,13 +9,17 @@ interface ButtonProps {
     title: string,
     color?: string,
     onPress: () => void;
+    buttonStyle?: ViewStyle;
 }
 
 const Button = (props: ButtonProps) => {
 
-    const { title, color = COLORS.BUTTON_COLOR, onPress} = props;
+    const { title, color = COLORS.BUTTON_COLOR, onPress, buttonStyle} = props;
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity 
+      style={[styles.container, buttonStyle]}
+      onPress={() => onPress()}
+    >
       <Text style={styles.buttonText}>{title}</Text>
       <Icon 
         name='arrow-right'
