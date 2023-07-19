@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS } from "../utils/Colors";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { hp, wp } from "../utils/ResponsiveLayout";
@@ -9,11 +9,24 @@ import SearchBar from "../components/SearchBar";
 import CountryList from "../components/CountryList";
 import PropertiesList from "../components/PropertiesList";
 import PopularList from "../components/PopularList";
+import Loader from "../components/Loader";
+import {StatusBar} from 'expo-status-bar'
+import CustomStatusBar from "../components/CustomStatusBar";
 
 
 const HomeScreen = () => {
+
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false)
+        }, 2000);
+    }, [])
+
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
+            <CustomStatusBar backgroundColor={COLORS.BG_COLOR} contentType="dark-content" />
             <View style={styles.topContainer}>
                 <View style={styles.userContainer}>
                     <Image
@@ -32,10 +45,12 @@ const HomeScreen = () => {
             </View>
             <Text style={styles.findText}>Find your stay</Text>
             <SearchBar />
-            <CountryList />
+           {!isLoading && <><CountryList />
             <PropertiesList />
-            <PopularList />
-        </SafeAreaView>
+            <PopularList /></>}
+            {isLoading && <Loader />}
+            
+        </View>
     );
 };
 

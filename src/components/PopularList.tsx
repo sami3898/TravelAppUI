@@ -6,12 +6,16 @@ import { COLORS } from '../utils/Colors'
 import { destinationType, destinations } from '../utils/Constant'
 import { Image } from 'expo-image'
 import Icon from '@expo/vector-icons/Ionicons';
+import Animated, { Layout, SlideInRight } from 'react-native-reanimated'
 
 const PopularList = () => {
 
     const _renderPopularList = (item: destinationType, index: number) => {
         return (
-            <View style={styles.cardContainer}>
+            <Animated.View 
+            layout={Layout.springify()}
+            entering={SlideInRight.delay(index * 100)}
+            style={styles.cardContainer}>
                 <Image 
                     source={item.images[1]}
                     priority={'high'}
@@ -37,7 +41,7 @@ const PopularList = () => {
                         <Text style={styles.cardOrigin}>{'2.1k+ reviews'}</Text>
                     </View>
                 </View>
-            </View>
+            </Animated.View>
         )
     }
 
